@@ -6,7 +6,6 @@ public class LinearNode<T> {
 	public LinearNode<T> neste;
 	
 	public LinearNode(T data) {
-		super();
 		this.data = data;
 		this.neste = null;
 	}

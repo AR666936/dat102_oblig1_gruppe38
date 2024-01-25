@@ -33,7 +33,7 @@ class FilmarkivTest {
 		System.out.println("Filmer: " + arkiv1.antall());
 		System.out.println("Lengde: " + arkiv1.getArkiv().length);
 		
-		System.out.println(arkiv1.finnFilm(3).getTittel());
+		System.out.println(arkiv1.finnFilm(0));
 		
 		arkiv1.slettFilm(4);
 		

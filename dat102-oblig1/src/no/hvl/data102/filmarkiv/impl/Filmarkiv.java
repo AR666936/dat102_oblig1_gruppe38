@@ -17,9 +17,8 @@ public class Filmarkiv implements FilmarkivADT {
 	@Override
 	public Film finnFilm(int nr) {
 		for(Film s : arkiv) {
-			
-			if (s.getFilmNr() == nr) {
-				return s;	
+			if (s != null && s.getFilmNr() == nr) {
+			return s;	
 			}
 		}
 		return null;
