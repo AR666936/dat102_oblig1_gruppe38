@@ -16,7 +16,6 @@ public class Tekstgrensesnitt {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Film nr: ");
 		int filmNr = parseInt(input.nextLine());
-		if (finnFilm()getfilmNr())
 		System.out.println("Produsent: ");
 		String produsent = input.nextLine();
 		System.out.println("Tittel: ");

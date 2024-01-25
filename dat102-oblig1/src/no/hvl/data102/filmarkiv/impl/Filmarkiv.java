@@ -18,7 +18,7 @@ public class Filmarkiv implements FilmarkivADT {
 	public Film finnFilm(int nr) {
 		for(Film s : arkiv) {
 			if (s.getFilmNr() == 0) {
-				return;
+				return s;
 			}
 			
 			if (s.getFilmNr() == nr) {
