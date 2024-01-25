@@ -1,17 +1,17 @@
-package no.hvl.data102.filmarkiv.impl;
+package no.hvl.data102.filmarkiv2.impl;
 
 import java.util.Arrays;
 
-import no.hvl.data102.filmarkiv.adt.FilmarkivADT;
+import no.hvl.data102.filmarkiv2.adt.FilmarkivADT;
 
-public class Filmarkiv implements FilmarkivADT {
+public class Filmarkiv2 implements FilmarkivADT {
 
-	private Film[] arkiv;
+	private LinearNode<Film> start;
 	private int antall;
 	
-	public Filmarkiv(int lengde) {
-		arkiv = new Film[lengde];
-		antall = 0;
+	public Filmarkiv2() {
+		this.start = null;
+		this.antall = 0;
 	}
 	
 	@Override

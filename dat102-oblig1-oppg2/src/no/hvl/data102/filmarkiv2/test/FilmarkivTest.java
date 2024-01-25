@@ -1,19 +1,19 @@
-package no.hvl.data102.filmarkiv.test;
+package no.hvl.data102.filmarkiv2.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import no.hvl.data102.filmarkiv.impl.Film;
-import no.hvl.data102.filmarkiv.impl.Filmarkiv;
-import no.hvl.data102.filmarkiv.impl.Sjanger;
+import no.hvl.data102.filmarkiv2.impl.Film;
+import no.hvl.data102.filmarkiv2.impl.Filmarkiv2;
+import no.hvl.data102.filmarkiv2.impl.Sjanger;
 
 class FilmarkivTest {
 
 	@Test
 	void test() {
 		
-		Filmarkiv arkiv1 = new Filmarkiv(3); 
+		Filmarkiv2 arkiv1 = new Filmarkiv2(3); 
 		
 		Film a = new Film(1, "Jeffrey Katzenberg, Aron Warner, John H. Williams, Steven Spielberg", "Shrek", 2001, Sjanger.COMEDY, "DreamWorks");
 		Film b = new Film(2, "Jeffrey Katzenberg", "Shrek 2", 2004, Sjanger.COMEDY, "DreamWorks");

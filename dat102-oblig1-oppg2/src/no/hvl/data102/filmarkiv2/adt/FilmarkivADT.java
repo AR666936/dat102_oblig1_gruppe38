@@ -1,7 +1,7 @@
-package no.hvl.data102.filmarkiv.adt;
+package no.hvl.data102.filmarkiv2.adt;
 
-import no.hvl.data102.filmarkiv.impl.Film;
-import no.hvl.data102.filmarkiv.impl.Sjanger;
+import no.hvl.data102.filmarkiv2.impl.Film;
+import no.hvl.data102.filmarkiv2.impl.Sjanger;
 
 public interface FilmarkivADT {
 

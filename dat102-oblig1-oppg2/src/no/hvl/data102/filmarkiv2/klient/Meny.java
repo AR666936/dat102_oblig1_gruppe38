@@ -1,8 +1,9 @@
-package no.hvl.data102.filmarkiv.klient;
+package no.hvl.data102.filmarkiv2.klient;
 
 import java.util.Scanner;
 
-import no.hvl.data102.filmarkiv.adt.FilmarkivADT;
+import no.hvl.data102.filmarkiv2.adt.FilmarkivADT;
+
 import static java.lang.Integer.parseInt;
 
 public class Meny {

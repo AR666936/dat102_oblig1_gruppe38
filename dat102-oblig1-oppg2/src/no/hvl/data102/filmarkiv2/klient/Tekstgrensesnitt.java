@@ -1,11 +1,11 @@
-package no.hvl.data102.filmarkiv.klient;
+package no.hvl.data102.filmarkiv2.klient;
 
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
-import no.hvl.data102.filmarkiv.adt.FilmarkivADT;
-import no.hvl.data102.filmarkiv.impl.Film;
-import no.hvl.data102.filmarkiv.impl.Sjanger;
+import no.hvl.data102.filmarkiv2.adt.FilmarkivADT;
+import no.hvl.data102.filmarkiv2.impl.Film;
+import no.hvl.data102.filmarkiv2.impl.Sjanger;
 
 public class Tekstgrensesnitt {
 
