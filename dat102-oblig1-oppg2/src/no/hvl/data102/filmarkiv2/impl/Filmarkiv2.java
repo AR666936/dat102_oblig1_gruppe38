@@ -15,47 +15,37 @@ public class Filmarkiv2 implements FilmarkivADT {
 	}
 	
 	@Override
-	public Film finnFilm(int nr) {
-		for(Film s : arkiv) {
-			if (s.getFilmNr() == 0) {
-				return s;
+	public Film finnFilm(int filmnr) {
+		LinearNode<Film> s = start;
+		while (s != null) {
+			if (s.data.getFilmNr() == filmnr) {
+				return s.data;
 			}
-			
-			if (s.getFilmNr() == nr) {
-				return s;
-			}
+			s = s.neste;
 		}
 		return null;
-	}
-	
-	private void utvid() {
-		Film[] nyttArkiv = new Film[2 * arkiv.length];
-		System.arraycopy(arkiv, 0, nyttArkiv, 0, antall);
-		arkiv = nyttArkiv;
 	}
 
 	@Override
 	public void leggTilFilm(Film nyFilm) {
-		if (antall == arkiv.length) {
-			utvid();
-		}
-		arkiv[antall] = nyFilm;
+		LinearNode<Film> newNode = new LinearNode<>(nyFilm);
+		newNode.neste = start;
+		start = newNode;
 		antall++;
 	}
 
 	@Override
 	public boolean slettFilm(int filmnr) {
-		
-		for (int i = 0; i < antall; i++) {
-            if (arkiv[i].getFilmNr() == filmnr) {
-                arkiv[i] = new Film();
-                System.arraycopy(arkiv, i + 1, arkiv, i, antall - i - 1);
-                antall--;
-                return true;
-            }
-			
+		if (finnFilm(filmnr) == null) {
+			return false;
 		}
-		return false;
+		
+		LinearNode<Film> s = start;
+		s.data = finnFilm(filmnr);
+		s = s.neste;
+		antall--;
+		return true;
+		
 	}
 
 	@Override
@@ -63,12 +53,14 @@ public class Filmarkiv2 implements FilmarkivADT {
 		
 		Film[] resultater = new Film[antall];
 		int antallResultater = 0;
+		LinearNode<Film> s = start;
 		
-		for (int i = 0; i < antall; i++) {
-			if (arkiv[i].getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
-				resultater[antallResultater] = arkiv[i];
+		while (s != null) {
+			if (s.data.getTittel().toLowerCase().contains(delstreng.toLowerCase())) {
+				resultater[antallResultater] = s.data;
 				antallResultater++;
 			}
+			s = s.neste;
 		}
 		return Arrays.copyOf(resultater, antallResultater);
 	}
@@ -78,12 +70,14 @@ public class Filmarkiv2 implements FilmarkivADT {
 		
 		Film[] resultater = new Film[antall];
 		int antallResultater = 0;
+		LinearNode<Film> s = start;
 		
-		for (int i = 0; i < antall; i++) {
-			if (arkiv[i].getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
-				resultater[antallResultater] = arkiv[i];
+		while (s != null) {
+			if (s.data.getProdusent().toLowerCase().contains(delstreng.toLowerCase())) {
+				resultater[antallResultater] = s.data;
 				antallResultater++;
 			}
+			s = s.neste;
 		}
 		return Arrays.copyOf(resultater, antallResultater);
 	}
@@ -92,11 +86,13 @@ public class Filmarkiv2 implements FilmarkivADT {
 	public int antall(Sjanger sjanger) {
 		
 		int resultater = 0;
+		LinearNode<Film> s = start;
 		
-		for (int i = 0; i < antall; i++) {
-			if (arkiv[i].getSjanger() == sjanger) {
+		while(s != null) {
+			if (s.data.getSjanger() == sjanger) {
 				resultater++;
 			}
+			s = s.neste;
 		}
 		return resultater;
 	}
@@ -105,22 +101,5 @@ public class Filmarkiv2 implements FilmarkivADT {
 	public int antall() {
 		return antall;
 	}
-	
-	@Override
-	public Film[] getArkiv() {
-		return arkiv;
-	}
-	
-	private Film[] trimTab(Film[] tab, int n) {
-		// n er antall elementer
-		Film[] nytab = new Film[n];
-		int i = 0;
-		while (i < n) {
-		nytab[i] = tab[i];
-		i++;
-		}
-		return nytab;
-		}
-
 
 }
