@@ -11,48 +11,71 @@ import no.hvl.data102.filmarkiv2.impl.Sjanger;
 class FilmarkivTest {
 
 	@Test
-	void test() {
-		
-		Filmarkiv2 arkiv1 = new Filmarkiv2(); 
-		
-		Film a = new Film(1, "Jeffrey Katzenberg, Aron Warner, John H. Williams, Steven Spielberg", "Shrek", 2001, Sjanger.COMEDY, "DreamWorks");
-		Film b = new Film(2, "Jeffrey Katzenberg", "Shrek 2", 2004, Sjanger.COMEDY, "DreamWorks");
-		Film c = new Film(3, "Emma Thomas, Christopher Nolan, Lynda Obst", "Interstellar", 2014, Sjanger.SCIFI, "Paramount Pictures");
-		
-		arkiv1.leggTilFilm(a);
-		arkiv1.leggTilFilm(b);
-		arkiv1.leggTilFilm(c);
-		
-		System.out.println("Filmer: " + arkiv1.antall());
-		
-		
-		Film d = new Film(4, "Bla Bla", "Bla", 2000, Sjanger.DRAMA, "Bla Bla Bla");
-		
-		arkiv1.leggTilFilm(d);
-		
-		System.out.println("Filmer: " + arkiv1.antall());
-		
-		
-		System.out.println(arkiv1.finnFilm(3).getTittel());
-		
-		arkiv1.slettFilm(4);
-		
-		System.out.println("Filmer: " + arkiv1.antall());
-		
-		
-		Film[] resTittel = arkiv1.soekTittel("Shre");
-		for (int i = 0; i < resTittel.length; i++) {
-		System.out.println(resTittel[i].getTittel());
-		}
-	
-		Film[] resProd = arkiv1.soekProdusent("Nolan");
-		for (int i = 0; i < resProd.length; i++) {
-		System.out.println(resProd[i].getTittel());
-		}
-		
-		System.out.println(arkiv1.antall(Sjanger.COMEDY));
-		System.out.println(arkiv1.antall(Sjanger.ACTION));
-		
-	}
+    public void leggTilOgFinnFilm() {
+        Filmarkiv2 filmarkiv = new Filmarkiv2();
 
+        Film film = new Film(1, "Produsent", "Film", 0, Sjanger.ACTION, "Filmselskap");
+
+        filmarkiv.leggTilFilm(film);
+
+        assertEquals(film, filmarkiv.finnFilm(1));
+    }
+
+    @Test
+    public void slettFilm() {
+        Filmarkiv2 filmarkiv = new Filmarkiv2();
+
+        Film film = new Film(1, "Produsent", "Film", 0, Sjanger.ACTION, "Filmselskap");
+
+        filmarkiv.leggTilFilm(film);
+
+        assertTrue(filmarkiv.slettFilm(1));
+
+        assertNull(filmarkiv.finnFilm(1));
+    }
+
+    @Test
+    public void soekTittel() {
+        Filmarkiv2 filmarkiv = new Filmarkiv2();
+
+        Film film1 = new Film(1, "Produsent", "abc", 0, Sjanger.SCIFI, "Filmselskap");
+        Film film2 = new Film(2, "Produsent", "def", 0, Sjanger.SCIFI, "Filmselskap");
+        Film film3 = new Film(3, "Produsent", "ghi", 0, Sjanger.DRAMA, "Filmselskap");
+
+        filmarkiv.leggTilFilm(film1);
+        filmarkiv.leggTilFilm(film2);
+        filmarkiv.leggTilFilm(film3);
+
+        assertArrayEquals(new Film[]{film1}, filmarkiv.soekTittel("ABc"));
+    }
+    
+    @Test
+    public void soekProdusent() {
+        Filmarkiv2 filmarkiv = new Filmarkiv2();
+
+        Film film1 = new Film(1, "abc", "Film", 0, Sjanger.SCIFI, "Filmselskap");
+        Film film2 = new Film(2, "def", "Film", 0, Sjanger.SCIFI, "Filmselskap");
+        Film film3 = new Film(3, "ghi", "Film", 0, Sjanger.DRAMA, "Filmselskap");
+
+        filmarkiv.leggTilFilm(film1);
+        filmarkiv.leggTilFilm(film2);
+        filmarkiv.leggTilFilm(film3);
+
+        assertArrayEquals(new Film[]{film2}, filmarkiv.soekProdusent("De"));
+    }
+
+    @Test
+    public void antallSjanger() {
+        Filmarkiv2 filmarkiv = new Filmarkiv2();
+
+        Film film1 = new Film(1, "Produsent", "Film", 0, Sjanger.SCIFI, "Filmselskap");
+        Film film2 = new Film(2, "Produsent", "Film", 0, Sjanger.SCIFI, "Filmselskap");
+        Film film3 = new Film(3, "Produsent", "Film", 0, Sjanger.DRAMA, "Filmselskap");
+
+        filmarkiv.leggTilFilm(film1);
+        filmarkiv.leggTilFilm(film2);
+        filmarkiv.leggTilFilm(film3);
+
+        assertEquals(2, filmarkiv.antall(Sjanger.SCIFI));
+    }
 }
